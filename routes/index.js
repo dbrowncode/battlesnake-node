@@ -49,8 +49,8 @@ router.post('/move', function (req, res) {
     }
   }
   var fruits = req.body.fruits
-  for(var i=0; i<fruits.length; i++){
-    state.spots.good.push(fruits[i])
+  for(var f=0; f<fruits.length; f++){
+    state.spots.good.push(fruits[f])
   }
 
   // Response data
