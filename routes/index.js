@@ -11,7 +11,7 @@ var state = {
     good: [],
     bad: [],
     heads: [],
-  }
+  },
   nextMove: 'up',
 }
 
