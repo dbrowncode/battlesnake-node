@@ -106,6 +106,9 @@ router.post('/move', function (req, res) {
     //move: moves[req.body.turn % dumbmoves.length],
     taunt: taunts[req.body.turn % taunts.length],
   }
+  if(possMoves.length > 0) {
+    console.log(possMoves)
+  }
   return res.json(data)
 })
 
