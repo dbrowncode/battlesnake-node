@@ -51,9 +51,10 @@ router.post('/move', function (req, res) {
     taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
   }
   //console.log(state.coords)
-  for(var i=0; i<state.board.length; i++){
-    console.log(state.board[i])
-  }
+  //for(var i=0; i<state.board.length; i++){
+  //  console.log(state.board[i])
+  //}
+  console.log(state.board)
 
   return res.json(data)
 })
