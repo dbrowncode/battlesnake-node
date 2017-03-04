@@ -6,6 +6,15 @@ var state = {
   width: 0,
   height: 0,
   coords: [[0,0]],
+  board: [[]],
+}
+
+function makeBoard(){
+  for(var i=0; i<width; i++){
+    for(var j=0; j<height; j++){
+      state.board[i,j] = 0
+    }
+  }
 }
 
 // Handle POST request to '/start'
@@ -21,6 +30,7 @@ router.post('/start', function (req, res) {
   }
   state.width = req.body.width
   state.height = req.body.height
+  makeBoard()
 
   return res.json(data)
 })
@@ -33,6 +43,9 @@ router.post('/move', function (req, res) {
     if(snakes[i].id == req.body.you){
       state.coords = snakes[i].coords
     }
+    for(var j=0; j<snakes[i].coords.length; j++){
+      state.board[snakes[i].coords[j][0],snakes[i].coords[j][1]] = 1
+    }
   }
 
   // Response data
@@ -40,7 +53,10 @@ router.post('/move', function (req, res) {
     move: moves[req.body.turn % moves.length], // one of: ['up','down','left','right']
     taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
   }
-  console.log(state.coords)
+  //console.log(state.coords)
+  for(var i=0; i<state.board.length; i++){
+    console.log(state.board[i])
+  }
 
   return res.json(data)
 })
