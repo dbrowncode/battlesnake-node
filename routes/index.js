@@ -36,7 +36,7 @@ router.post('/start', function (req, res) {
 
 // Handle POST request to '/move'
 router.post('/move', function (req, res) {
-  // NOTE: Do something here to generate your move
+  // reset and repopulate board state info
   state.spots.bad = []
   state.spots.good = []
   state.spots.heads = []
@@ -56,12 +56,15 @@ router.post('/move', function (req, res) {
     state.spots.good.push(fruits[f])
   }
 
+  // find nearby spots and make sure they aren't deadly
+
+
   // Response data
   var data = {
     move: moves[req.body.turn % moves.length], // one of: ['up','down','left','right']
     taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
   }
-  console.log(state.coords)
+  console.log(state.coords[0][0])
 
   return res.json(data)
 })
