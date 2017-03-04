@@ -9,6 +9,7 @@ var state = {
   spots: {
     good: [],
     bad: [],
+    heads: [],
   }
 }
 
@@ -39,6 +40,8 @@ router.post('/move', function (req, res) {
   for(var i=0; i<snakes.length; i++){
     if(snakes[i].id == req.body.you){
       state.coords = snakes[i].coords
+    }else{
+      state.spots.heads.push(snakes[i].coords[0])
     }
     for(var j=0; j<snakes[i].coords.length; j++){
       state.spots.bad.push(snakes[i].coords[j])
@@ -54,7 +57,7 @@ router.post('/move', function (req, res) {
   //for(var i=0; i<state.board.length; i++){
   //  console.log(state.board[i])
   //}
-  console.log(state.spots.bad)
+  console.log(state.spots.heads)
 
   return res.json(data)
 })
