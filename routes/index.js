@@ -26,7 +26,10 @@ router.post('/move', function (req, res) {
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
   if(req.turn > 0){
-    data.move = 'left';
+    data = {
+      move: 'left',
+      taunt: 'goin left'
+    }
   }
 
   return res.json(data)
