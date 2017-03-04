@@ -1,5 +1,6 @@
 var express = require('express')
 var router  = express.Router()
+var taunts = {'Z', 'A', 'L', 'G', 'O'};
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -23,9 +24,9 @@ router.post('/move', function (req, res) {
   // Response data
   var data = {
     move: 'left', // one of: ['up','down','left','right']
-    taunt: 'what?' + req.body.turn, // optional, but encouraged!
+    taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
   }
-  console.log(req.body.turn)
+  //console.log(req.body.turn)
 
   return res.json(data)
 })
