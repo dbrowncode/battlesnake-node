@@ -8,9 +8,9 @@ router.post('/start', function (req, res) {
   // Response data
   var data = {
     color: "#DFFF00",
-    name: "Trump Snake",
+    name: "Zalgo",
     head_url: "http://www.placecage.com/c/200/200", // optional, but encouraged!
-    taunt: "Let's do thisss thang!", // optional, but encouraged!
+    taunt: "woop", // optional, but encouraged!
   }
 
   return res.json(data)
@@ -24,6 +24,9 @@ router.post('/move', function (req, res) {
   var data = {
     move: 'up', // one of: ['up','down','left','right']
     taunt: 'Outta my way, snake!', // optional, but encouraged!
+  }
+  if(req.turn == 0){
+    data.move = 'left';
   }
 
   return res.json(data)
