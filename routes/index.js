@@ -9,13 +9,6 @@ var state = {
   board: [[]],
 }
 
-function makeBoard(){
-  for(var i=0; i<width; i++){
-    for(var j=0; j<height; j++){
-      state.board[i,j] = 0
-    }
-  }
-}
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -30,7 +23,11 @@ router.post('/start', function (req, res) {
   }
   state.width = req.body.width
   state.height = req.body.height
-  makeBoard()
+  for(var i=0; i<width; i++){
+    for(var j=0; j<height; j++){
+      state.board[i,j] = 0;
+    }
+  }
 
   return res.json(data)
 })
