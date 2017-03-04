@@ -24,7 +24,7 @@ router.post('/move', function (req, res) {
   // Response data
   var data = {
     move: 'left', // one of: ['up','down','left','right']
-    taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
+    taunt: taunts[req.body.turn % 5], // optional, but encouraged!
   }
   //console.log(req.body.turn)
 
