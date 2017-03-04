@@ -5,8 +5,11 @@ var moves = ['up', 'left', 'down', 'right']
 var state = {
   width: 0,
   height: 0,
-  coords: [[0,0]],
-  board: [[]],
+  coords: [],
+  spots: {
+    good: [],
+    bad: [],
+  }
 }
 
 
@@ -23,11 +26,6 @@ router.post('/start', function (req, res) {
   }
   state.width = req.body.width
   state.height = req.body.height
-  for(var i=0; i<width; i++){
-    for(var j=0; j<height; j++){
-      state.board[i,j] = 0;
-    }
-  }
 
   return res.json(data)
 })
@@ -35,13 +33,15 @@ router.post('/start', function (req, res) {
 // Handle POST request to '/move'
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
+  state.spots.bad = []
+  state.spots.good = []
   var snakes = req.body.snakes
   for(var i=0; i<snakes.length; i++){
     if(snakes[i].id == req.body.you){
       state.coords = snakes[i].coords
     }
     for(var j=0; j<snakes[i].coords.length; j++){
-      state.board[snakes[i].coords[j][0],snakes[i].coords[j][1]] = 1
+      state.spots.bad.push(snakes[i].coords[j])
     }
   }
 
@@ -54,7 +54,7 @@ router.post('/move', function (req, res) {
   //for(var i=0; i<state.board.length; i++){
   //  console.log(state.board[i])
   //}
-  console.log(state.board)
+  console.log(state.spots.bad)
 
   return res.json(data)
 })
