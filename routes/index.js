@@ -48,7 +48,7 @@ router.post('/move', function (req, res) {
       state.spots.bad.push(snakes[i].coords[j])
     }
   }
-  var fruits = req.body.fruits
+  var fruits = req.body.food
   for(var f=0; f<fruits.length; f++){
     state.spots.good.push(fruits[f])
   }
