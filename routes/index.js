@@ -48,6 +48,10 @@ router.post('/move', function (req, res) {
       state.spots.bad.push(snakes[i].coords[j])
     }
   }
+  var fruits = req.body.fruits
+  for(var i=0; i<fruits.length; i++){
+    state.spots.good.push(fruits[i])
+  }
 
   // Response data
   var data = {
@@ -58,7 +62,7 @@ router.post('/move', function (req, res) {
   //for(var i=0; i<state.board.length; i++){
   //  console.log(state.board[i])
   //}
-  console.log(state.spots.heads)
+  console.log(state.spots.good)
 
   return res.json(data)
 })
