@@ -13,6 +13,7 @@ var state = {
   }
 }
 
+function nearestFood()
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -58,11 +59,7 @@ router.post('/move', function (req, res) {
     move: moves[req.body.turn % moves.length], // one of: ['up','down','left','right']
     taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
   }
-  //console.log(state.coords)
-  //for(var i=0; i<state.board.length; i++){
-  //  console.log(state.board[i])
-  //}
-  console.log(state.spots.good)
+  console.log(state.coords)
 
   return res.json(data)
 })
