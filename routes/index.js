@@ -23,8 +23,9 @@ router.post('/move', function (req, res) {
   // Response data
   var data = {
     move: 'left', // one of: ['up','down','left','right']
-    taunt: req.data["turn"], // optional, but encouraged!
+    taunt: 'what?', // optional, but encouraged!
   }
+  console.log(req)
 
   return res.json(data)
 })
