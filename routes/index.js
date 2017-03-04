@@ -13,7 +13,9 @@ var state = {
   }
 }
 
-function nearestFood()
+function nearestFood(){
+
+}
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
