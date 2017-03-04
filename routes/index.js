@@ -38,10 +38,9 @@ router.post('/move', function (req, res) {
   // Response data
   var data = {
     move: moves[req.body.turn % moves.length], // one of: ['up','down','left','right']
-    //taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
-    taunt: state.coords
+    taunt: taunts[req.body.turn % taunts.length], // optional, but encouraged!
   }
-  //console.log(req.body.turn)
+  console.log(state.coords)
 
   return res.json(data)
 })
