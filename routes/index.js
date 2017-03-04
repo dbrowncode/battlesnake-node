@@ -36,6 +36,7 @@ router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
   state.spots.bad = []
   state.spots.good = []
+  state.spots.heads = []
   var snakes = req.body.snakes
   for(var i=0; i<snakes.length; i++){
     if(snakes[i].id == req.body.you){
