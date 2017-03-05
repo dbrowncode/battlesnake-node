@@ -112,6 +112,7 @@ router.post('/move', function (req, res) {
   }
   if(possMoves.length > 0) {
     console.log(possMoves)
+    console.log(state.spots.bad)
   }
   return res.json(data)
 })
