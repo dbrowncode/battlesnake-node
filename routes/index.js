@@ -19,23 +19,35 @@ function isValid(spot){
   return (spot[0] >=0 && spot[0] < state.width && spot[1] >= 0 && spot[1] < state.height)
 }
 
+function randomElem(array){
+  return array[Math.floor(Math.random() * array.length)]
+}
+
+var data = {
+  move: state.nextMove,
+  taunt: randomElem(taunts)
+}
+
+function prepData(newMove, newTaunt){
+  data.move = newMove
+  data.taunt = newTaunt
+}
+
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
-  // NOTE: Do something here to start the game
-
   // Response data
-  var data = {
+  var startData = {
     color: "#FF9900",
     name: "git commit -m \"pls work\"",
     head_url: "http://jumpon.top/stu.png",
-    taunt: taunts[Math.floor(Math.random() * taunts.length)],
+    taunt: randomElem(taunts),
     head_type: "sand-worm",
-    tail_type: "pixel",    
+    tail_type: "pixel",
   }
   state.width = req.body.width
   state.height = req.body.height
 
-  return res.json(data)
+  return res.json(startData)
 })
 
 // Handle POST request to '/move'
@@ -81,31 +93,28 @@ router.post('/move', function (req, res) {
         possMoves.push(testSpots[i])
       }
     }
-    // if(state.spots.bad.indexOf(testSpots[i]) == -1 && isValid(testSpots[i])){
-    //   //spot isn't lethal
-    //   possMoves.push(testSpots[i])
-    // }
   }
 
   //if one of the possMoves spots has food, yolo, treat yo self
   for(var i=0; i<possMoves.length; i++){
     if(state.spots.good.indexOf(possMoves[i]) != -1){
       state.nextMove = moves[testSpots.indexOf(possMoves[i])]
-      var data = {
-        move: state.nextMove,
-        taunt: 'omg food finally',
-      }
+      prepData(state.nextMove, 'omg food finally')
+      // var data = {
+      //   move: state.nextMove,
+      //   taunt: 'omg food finally',
+      // }
       return res.json(data)
     }
   }
 
   //if we got here, there is no adjacent food. try to find if there's food aligned with us i guess, idk
-  var alignedFoods = []
-  for(var j=0; j<state.spots.good.length; j++){
-    if(state.spots.good[j][0] == state.coords[0] || state.spots.good[j][1] == state.coords[1]){
-      alignedFoods.push(state.spots.good[j])
-    }
-  }
+  // var alignedFoods = []
+  // for(var j=0; j<state.spots.good.length; j++){
+  //   if(state.spots.good[j][0] == state.coords[0] || state.spots.good[j][1] == state.coords[1]){
+  //     alignedFoods.push(state.spots.good[j])
+  //   }
+  // }
   //todo: check the aligned foods and find the closest
   // for(var i=0; i<alignedFoods.length; i++){
   //
@@ -113,21 +122,18 @@ router.post('/move', function (req, res) {
 
   // so there's no easily findable food. pick a valid move at random if there are any.
   if(possMoves.length > 0){
-    state.nextMove = moves[testSpots.indexOf(possMoves[Math.floor(Math.random() * possMoves.length)])]
+    state.nextMove = moves[testSpots.indexOf(randomElem(possMoves))]
   }else{
     //no non-lethal moves? rip, ascend to your death
     state.nextMove = 'up'
   }
 
-  var data = {
-    move: state.nextMove,
-    //move: moves[req.body.turn % dumbmoves.length],
-    taunt: taunts[Math.floor(Math.random() * taunts.length)],
-  }
-  // if(possMoves.length > 0) {
-  //   console.log(possMoves)
-  //   console.log(state.spots.bad)
+  // var data = {
+  //   move: state.nextMove,
+  //   //move: moves[req.body.turn % dumbmoves.length],
+  //   taunt: randomElem(taunts),
   // }
+  prepData(state.nextMove, randomElem(taunts))
   return res.json(data)
 })
 
