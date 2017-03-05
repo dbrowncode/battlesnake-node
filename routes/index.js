@@ -57,10 +57,10 @@ router.post('/move', function (req, res) {
   // find nearby spots and make sure they aren't deadly
   var possMoves = []
   var testSpots = [
-    [state.coords[0], state.coords[1] - 1],
-    [state.coords[0], state.coords[1] + 1],
-    [state.coords[0] - 1, state.coords[1]],
-    [state.coords[0] + 1, state.coords[1]],
+    [state.coords[0][0], state.coords[0][1] - 1],
+    [state.coords[0][0], state.coords[0][1] + 1],
+    [state.coords[0][0] - 1, state.coords[0][1]],
+    [state.coords[0][0] + 1, state.coords[0][1]],
   ]
   for(var i=0; i<testSpots.length; i++){
     if(state.spots.bad.indexOf(testSpots[i]) === -1){
