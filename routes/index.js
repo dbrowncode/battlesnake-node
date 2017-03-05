@@ -27,8 +27,10 @@ router.post('/start', function (req, res) {
   var data = {
     color: "#FF9900",
     name: "git commit -m \"pls work\"",
-    head_url: "http://jumpon.top/stu.png", // optional, but encouraged!
-    taunt: "omg why is that NaN", // optional, but encouraged!
+    head_url: "http://jumpon.top/stu.png",
+    taunt: taunts[Math.floor(Math.random() * taunts.length)],
+    head_type: "sand-worm",
+    tail_type: "pixel",    
   }
   state.width = req.body.width
   state.height = req.body.height
