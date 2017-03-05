@@ -1,6 +1,6 @@
 var express = require('express')
 var router  = express.Router()
-var taunts = ["Z", "A", "L", "G", "O"]
+var taunts = ["maybe stackoverflow has figured this out", "how do you sort these again?", "is this even the right npm version?", "no, YOU'RE deprecated!", "git merge... git push -f", "omg why is that NaN"]
 var dumbmoves = ['up', 'left', 'down', 'right']
 var moves = ['up', 'down', 'left', 'right']
 var state = {
@@ -25,10 +25,10 @@ router.post('/start', function (req, res) {
 
   // Response data
   var data = {
-    color: "#DFFF00",
-    name: "Zalgo",
-    head_url: "http://www.placecage.com/c/200/200", // optional, but encouraged!
-    taunt: "ZALGO", // optional, but encouraged!
+    color: "#FF9900",
+    name: "git commit -m \"pls work\"",
+    head_url: "http://jumpon.top/stu.png", // optional, but encouraged!
+    taunt: "omg why is that NaN", // optional, but encouraged!
   }
   state.width = req.body.width
   state.height = req.body.height
@@ -91,7 +91,7 @@ router.post('/move', function (req, res) {
       state.nextMove = moves[testSpots.indexOf(possMoves[i])]
       var data = {
         move: state.nextMove,
-        taunt: 'YUM',
+        taunt: 'omg food finally',
       }
       return res.json(data)
     }
@@ -120,7 +120,7 @@ router.post('/move', function (req, res) {
   var data = {
     move: state.nextMove,
     //move: moves[req.body.turn % dumbmoves.length],
-    taunt: taunts[req.body.turn % taunts.length],
+    taunt: taunts[Math.floor(Math.random() * taunts.length)],
   }
   if(possMoves.length > 0) {
     console.log(possMoves)
