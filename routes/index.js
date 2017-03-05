@@ -67,10 +67,22 @@ router.post('/move', function (req, res) {
     [state.coords[0][0] + 1, state.coords[0][1]],
   ]
   for(var i=0; i<testSpots.length; i++){
-    if(state.spots.bad.indexOf(testSpots[i]) == -1 && isValid(testSpots[i])){
-      //spot isn't lethal
-      possMoves.push(testSpots[i])
+    var looksGood = true
+    if(isValid(testSpots[i])){
+      for(var j=0; j<state.spots.bad.length; j++){
+        if(testSpots[i] == state.spots.bad[j]){
+          looksGood = false
+        }
+      }
+      if(looksGood){
+        //spot should be non-lethal
+        possMoves.push(testSpots[i])
+      }
     }
+    // if(state.spots.bad.indexOf(testSpots[i]) == -1 && isValid(testSpots[i])){
+    //   //spot isn't lethal
+    //   possMoves.push(testSpots[i])
+    // }
   }
 
   //if one of the possMoves spots has food, yolo, treat yo self
