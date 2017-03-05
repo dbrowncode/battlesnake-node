@@ -15,6 +15,10 @@ var state = {
   nextMove: 'up',
 }
 
+function isValid(spot){
+  return (spot[0] >=0 && spot[1] >= 0)
+}
+
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
   // NOTE: Do something here to start the game
@@ -63,7 +67,7 @@ router.post('/move', function (req, res) {
     [state.coords[0][0] + 1, state.coords[0][1]],
   ]
   for(var i=0; i<testSpots.length; i++){
-    if(state.spots.bad.indexOf(testSpots[i]) === -1){
+    if(state.spots.bad.indexOf(testSpots[i]) === -1 && isValid(testSpots[i])){
       //spot isn't lethal
       possMoves.push(testSpots[i])
     }
