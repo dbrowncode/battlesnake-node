@@ -122,10 +122,10 @@ router.post('/move', function (req, res) {
     //move: moves[req.body.turn % dumbmoves.length],
     taunt: taunts[Math.floor(Math.random() * taunts.length)],
   }
-  if(possMoves.length > 0) {
-    console.log(possMoves)
-    console.log(state.spots.bad)
-  }
+  // if(possMoves.length > 0) {
+  //   console.log(possMoves)
+  //   console.log(state.spots.bad)
+  // }
   return res.json(data)
 })
 
