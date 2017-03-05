@@ -16,7 +16,7 @@ var state = {
 }
 
 function isValid(spot){
-  return (spot[0] >=0 && spot[1] >= 0)
+  return (spot[0] >=0 && spot[0] < state.width && spot[1] >= 0 && spot[1] < height)
 }
 
 // Handle POST request to '/start'
