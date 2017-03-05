@@ -67,10 +67,10 @@ router.post('/move', function (req, res) {
     [state.coords[0][0] + 1, state.coords[0][1]],
   ]
   for(var i=0; i<testSpots.length; i++){
-    var looksGood = true
     if(isValid(testSpots[i])){
+      var looksGood = true
       for(var j=0; j<state.spots.bad.length; j++){
-        if(testSpots[i] == state.spots.bad[j]){
+        if(testSpots[i][0] == state.spots.bad[j][0] && testSpots[i][1] == state.spots.bad[j][1]){
           looksGood = false
         }
       }
